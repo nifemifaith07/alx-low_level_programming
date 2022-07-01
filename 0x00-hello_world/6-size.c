@@ -1,10 +1,10 @@
 #include <stdio.h>
 
 /**
- *  * main - Entry Point
- *   *
- *    * Return: Always 0 (Success)
- *     */
+ * main - Entry Point
+ *
+ * Return: Always 0 (Success)
+ */
 int main(void)
 {
 		char c;
@@ -18,5 +18,5 @@ int main(void)
 									printf("Size of a long int: %lu byte(s)\n", (unsigned long int)sizeof(d));
 										printf("Size of a long long int: %lu byte(s)\n", (unsigned int)sizeof(e));
 											printf("Size of a float: %lu byte(s)\n", (unsigned int)sizeof(f));
-												return (0);
+											return (0);
 }
