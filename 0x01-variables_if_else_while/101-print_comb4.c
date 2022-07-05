@@ -2,6 +2,10 @@
 
 /**
 * main - Entry point
+* Program that prints all possible different combinations of three digits
+* must be separated by , followed by a space
+* The three digits must be different
+* 012, 120, 102, 021, 201, 210 are considered the same combination of the three digits 0, 1 and 2
 *
 * Return: Always 0 (Success)
 */
