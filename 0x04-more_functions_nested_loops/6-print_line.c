@@ -5,6 +5,7 @@
 * @n: no of lines
 *
 * Return: nothing
+*/
 
 void print_line(int n)
 {
