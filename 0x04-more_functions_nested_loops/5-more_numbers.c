@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * more_number - print 0 to 14 folloed by a newline
+ * more_numbers - print 0 to 14 folloed by a newline
  *
  * Return: nothing
  */
