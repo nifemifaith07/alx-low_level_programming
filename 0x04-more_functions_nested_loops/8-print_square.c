@@ -19,7 +19,7 @@ void print_square(int size)
 		while (size > 0)
 		{
 			_putchar(35);
-`			size--;
+			size--;
 		}
 		_putchar(10);
 	}
