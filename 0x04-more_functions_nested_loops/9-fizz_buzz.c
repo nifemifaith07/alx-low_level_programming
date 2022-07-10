@@ -1,9 +1,10 @@
 #include <stdio.h>
 
 /*
- * main - Entry  point
- *
- * Return: Nothing
+ * main - Entry point
+ * prints numbers 1--100 with Fizz, Buzz for multiples
+ * of 3, 5 and FizzBuzz for multiples of both
+ * Return: Always 0(success)
  */
 
 int main(void)
