@@ -9,20 +9,20 @@
 
 void print_square(int size)
 {
-	int c;
+	int c, d;
 
 	if (size <= 0)
 		_putchar('\n');
-	else if (size > 0)
+
+	for (c = 0; c < size; c++)
 	{
-		for (c = 0; c < size; c++)
+		while (size > 0)
 		{
-			while (size > 0)
+			for (d = 0; d < size; d++)
 			{
 				_putchar(35);
-				size--;
 			}
-			_putchar(10);
 		}
+			_putchar(10);
 	}
 }
