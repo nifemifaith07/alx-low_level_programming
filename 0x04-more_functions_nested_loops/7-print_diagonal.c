@@ -2,7 +2,7 @@
 
 /**
  * print_diagonal - draws diagonal line on the terminal
- * @n: umber of times the chacternshould be printed
+ * @n: umber of times the chacters should be printed
  *
  * Return: nothing
  */
