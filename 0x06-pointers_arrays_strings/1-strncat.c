@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * _strncat - cincatenates two strings using at most nbytes from src 
+ * _strncat - cincatenates two strings using at most nbytes from src
  * @src: string to concatenate
  * @dest: destination
  * @n: number of bytes of strings
