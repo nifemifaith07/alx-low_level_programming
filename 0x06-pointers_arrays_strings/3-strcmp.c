@@ -5,7 +5,7 @@
  * @s1: string !
  * @s2: string 2
  *
- * Return: difference between the ASCII value of the first not matching characters
+ * Return: diff btw the ASCII value of first not matching character
  */
 
 int _strcmp(char *s1, char *s2)
