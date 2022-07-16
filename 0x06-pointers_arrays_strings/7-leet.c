@@ -6,7 +6,7 @@
  * Retutn: pointer to the string
  */
 
-char *leet(char *s);
+char *leet(char *s)
 {
 	int y, i = 0;
 	char src[] = {'a', 'A', 'E', 'e', 't', 'T', 'l', 'L', 'o', 'O'};
