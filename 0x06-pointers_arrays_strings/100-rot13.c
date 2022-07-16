@@ -16,7 +16,7 @@ char *rot13(char *str)
 	char alpha[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	char rot13[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-	while ( str[x] != '\0')
+	while (str[x] != '\0')
 	{
 		for (i = 0; i <= 52; i++)
 		{
