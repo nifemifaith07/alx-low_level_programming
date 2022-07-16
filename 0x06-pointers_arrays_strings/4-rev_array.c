@@ -3,21 +3,29 @@
 /**
  * reverse_array - reverses the content of an array of integers
  * @a: The array
- * @n: number of elements of the array
+ * @n: number of elements in the array
  *
- * Return: nothing
- */
+ * Return: Nothing
+*/
 
 void reverse_array(int *a, int n)
 {
-	int i, k = 0;
+	int i, temp, h;
 
-	i = n - 1;
-
-	while (k < n)
+	i = 0;
+	h = n - 1;
+	/**
+	 * set value in array a in temp
+	 * then place the last array in
+	 * the first array then place
+	 * value in temp to last array
+	*/
+	while (i < h)
 	{
-		a[k] = a[i];
-		k++;
-		--i;
+		temp = a[i];
+		a[i] = a[h];
+		a[h] = temp;
+		i++;
+		h--;
 	}
 }
