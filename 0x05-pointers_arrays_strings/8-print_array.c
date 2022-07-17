@@ -8,7 +8,7 @@
  *
  * Return: Nothing
  */
- 
+
 void print_array(int *a, int n)
 {
 	int i;
