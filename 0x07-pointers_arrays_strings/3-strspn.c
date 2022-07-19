@@ -5,14 +5,14 @@
 * @s: string
 * @accept: substring
 *
-* Return: number of bytes in the initial segment of s 
+* Return: number of bytes in the initial segment of s
 * which consist only of bytes from accept
 */
 
 unsigned int _strspn(char *s, char *accept)
 {
 	int i;
-	unsigned int j;
+	unsigned int j = 0;
 
 	while (*s)
 	{
