@@ -10,7 +10,7 @@ int _sqrt_opt(int n, int j);
 
 int _sqrt_recursion(int n)
 {
-	return (_sqrt_opt(n, 2));
+	return (_sqrt_opt(n, 1));
 }
 
 /**
