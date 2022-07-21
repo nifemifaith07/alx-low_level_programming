@@ -1,5 +1,5 @@
 #include "main.h"
-int _pow_opt(int n, int j);
+int _sqrt_opt(int n, int j);
 
 /**
  * _sqrt_recursion - returns the natural square root of a number.
