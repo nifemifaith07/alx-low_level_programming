@@ -27,7 +27,7 @@ int _sqrt_opt(int n, int j)
 		return (-1);
 	if ((j * j) > n)
 		return (-1);
-	if (j * j = n)
+	if (j * j == n)
 		return (j);
 	if (n == 1)
 		return (1);
