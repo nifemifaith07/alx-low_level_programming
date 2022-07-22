@@ -30,7 +30,7 @@ int _is_divisible(int n, int div);
 
 int is_prime_number(int n)
 {
-	div = 2;
+	int div = 2;
 
 	if (n < 2)
 		return (0);
