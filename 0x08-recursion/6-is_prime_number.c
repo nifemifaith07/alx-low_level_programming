@@ -15,7 +15,7 @@ int _is_divisible(int n, int div);
 	 if (n % 2 == 0)
 		 return (0);
 
-	 if (div = n / 2)
+	 if (div == n / 2)
 		 return (2);
 	 return (_is-divisible(n, div + 1));
  }
