@@ -2,7 +2,6 @@
 #define _MAIN_h_
 
 #include <stdio.h>
-
-
+#include <stdlib.h>
 
 #endif
