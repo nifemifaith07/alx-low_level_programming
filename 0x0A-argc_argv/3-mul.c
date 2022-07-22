@@ -9,7 +9,7 @@
  * Return: 0(success) or 1 if not two arguments
  */
 
-int main(int argc, char * argv[])
+int main(int argc, char *argv[])
 {
 	if (argc != 3)
 	{
