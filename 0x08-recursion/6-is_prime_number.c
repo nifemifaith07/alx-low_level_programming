@@ -32,7 +32,7 @@ int is_prime_number(int n)
 {
 	int div = 2;
 
-	if (n < 2)
+	if (n <= 1)
 		return (0);
 	if (n >= 2 && n <= 3)
 		return (1);
