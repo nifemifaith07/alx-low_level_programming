@@ -7,8 +7,4 @@
  * @src: string pointer
  *
  * Return: pointer to dest
- */
- 
-char *_strcpy(char *dest, char *src)
-{
-}
+*/
