@@ -32,8 +32,9 @@ s = malloc(sizeof(char * (a1 + n + 1);
 if (s == NULL)
 return (NULL)
 for (i = 0; s1[i] != '\0'; i++)
-s[i] = s1[i]
-for (j = a1
-
-
+s[i] = s1[i];
+for (j = a1; j < a1 + n; j++)
+s[j] = s2[j - a1];
+s[j] = '\0';
+return (s);
 }
