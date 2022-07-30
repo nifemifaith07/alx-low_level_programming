@@ -4,8 +4,9 @@
  * string_nconcat - concatenates two strings
  * If n <= the length of s2 then use the entire string s2
  * if NULL is passed, treat it as an empty string
- * s1: pointer to string
- * s2: pointer to string
+ * @s1: pointer to string
+ * @s2: pointer to string
+ * @n: unsigned integer
  *
  * Return: pointer to newly allocated space in memory
  * which contains s1 followed by n bytes of s2 null terminated
