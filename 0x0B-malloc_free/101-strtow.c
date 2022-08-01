@@ -24,8 +24,7 @@ int count_word(char *str)
 			}
 			w++;
 		}
-	}
-
+	}	
 	return (w);
 }
 
@@ -41,10 +40,6 @@ int count_word(char *str)
 char **strtow(char *str)
 {
 char **matrix, *tmp;
-	int i, k = 0, len = 0, words, c = 0, start, end;
-
-if (str == NULL || str == "")
-return (NULL);
 
 
 
