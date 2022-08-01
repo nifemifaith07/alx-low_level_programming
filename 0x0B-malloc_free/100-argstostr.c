@@ -19,7 +19,9 @@ char *argstostr(int ac, char **av)
 	for (i = 0; i < ac; 1++)
 	{
 		for (j = 0; av[i][j]; j++)
+		{
 			len++;
+		}
 	}
 	/* add number of \n needed to len */
 	len += ac;
@@ -38,3 +40,5 @@ char *argstostr(int ac, char **av)
 			s[k++] = '\n';
 		}
 	}
+	return (s);
+}
