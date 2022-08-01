@@ -6,20 +6,22 @@
  *
  * Return: number of words
  */
-int count_word(char *s)
+int count_word(char *str)
 {
-	int flag, c, w;
+	int w = 0
 
-	flag = 0;
-	w = 0;
-
-	for (c = 0; s[c] != '\0'; c++)
+	while (*str != '\0')
 	{
-		if (s[c] == ' ')
-			flag = 0;
-		else if (flag == 0)
+		/* skip spaces */
+		if (*str == ' ')
+			str++;
+		else
 		{
-			flag = 1;
+			/* count words */
+			while(*str != ' ' && *str)
+			{
+				str++;
+			}
 			w++;
 		}
 	}
