@@ -41,7 +41,7 @@ char *_scpy(char *dest, char *src)
  *
  * Return: pointer to dog, NULL if function fail
  */
- 
+
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	dog_t *dog;
