@@ -4,7 +4,6 @@
  * main - prints result of simple calculation
  * @argv: array of pointers to arguments
  * @argc: argument count
- 
  *
  * Return: always (0)
  * Description: Program that takes 4 arguments where 2 are
