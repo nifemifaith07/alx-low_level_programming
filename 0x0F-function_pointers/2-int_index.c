@@ -6,7 +6,7 @@
  * @size: size of array of type int
  * @cmp: function pointer to the function to compare values
  *
- * Return: -1 if (null||size <= 0)|| return index of the first 
+ * Return: -1 if (null||size <= 0)|| return index of the first
  * element for which the cmp function does not return 0
  */
 
