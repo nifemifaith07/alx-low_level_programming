@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	unsigned char opcodes;
 	int (*add)(int, char **) = main;
 
-	if (args != 2)
+	if (argc != 2)
 	{
 		printf("Error\n");
 		exit(1);
