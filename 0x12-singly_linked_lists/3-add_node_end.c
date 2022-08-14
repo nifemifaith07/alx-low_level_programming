@@ -2,8 +2,8 @@
 
 /**
  * add_node_end - adds a node at the end of a lisnkedlist
- * head: pointer to pointer to first node of the list
- * str: string to add
+ * @head: pointer to pointer to first node of the list
+ * @str: string to add
  * Return: address of the new element, NULL if it failed
  */
 
