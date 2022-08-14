@@ -4,7 +4,9 @@
  * premain - function that runs before main
  *
  * Return: nothing
-*/
+ * Description: Apply the constructor attribute to premain() 
+ * so that it is executed before main()
+ */
 
 void __attribute__ ((constructor)) premain()
 {
