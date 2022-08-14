@@ -16,7 +16,7 @@ list_t *add_node_end(list_t **head, const char *str)
 	if (str == NULL)
 		str_len = 0;
 	/* get lenght of string */
-	while (str != '\0')
+	while (str != NULL)
 		str_len++;
 
 	/* allocate new_node, return null if malloc fails */
@@ -37,10 +37,10 @@ list_t *add_node_end(list_t **head, const char *str)
 		/* copy the addr of head node to temp */
 		temp = *head;
 		/* else transverse till temp->next is last node */
-		while (temp->next != '\0')
+		while (temp->next != NULL)
 			temp = temp->next;
 		/* change next of last->node */
-		temp->next = new-node;
+		temp->next = new_node;
 	}
 
 	return (*head);
