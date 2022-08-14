@@ -16,7 +16,7 @@ list_t *add_node_end(list_t **head, const char *str)
 	if (str == NULL)
 		str_len = 0;
 	/* get lenght of string */
-	while (str != NULL)
+	while (str[str_len] != '\0')
 		str_len++;
 
 	/* allocate new_node, return null if malloc fails */
