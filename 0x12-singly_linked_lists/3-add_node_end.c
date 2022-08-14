@@ -29,13 +29,14 @@ list_t *add_node_end(list_t **head, const char *str)
 	new_node->len = str_len;
 	new_node->next = NULL;
 
+	/* copy the addr of head node to temp */
+	temp = *head;
+
 	/* make new_node head if list is empty */
-	if (*head == NULL)
+	if (temp == NULL)
 		*head = new_node;
 	else
 	{
-		/* copy the addr of head node to temp */
-		temp = *head;
 		/* else transverse till temp->next is last node */
 		while (temp->next != NULL)
 			temp = temp->next;
