@@ -1,4 +1,4 @@
-#include "lists.h" 
+#include "lists.h"
 
 /**
  * add_nodeint - add new node at the beginning of listint_t
@@ -13,9 +13,9 @@ listint_t *add_nodeint(listint_t **head, const int n)
 	listint_t *newnode;
 
 	newnode = malloc(sizeof(listint_t));
-	/* return null if malloc fails*/
+	/* return null if malloc fails */
 	if (newnode == NULL)
-                   return (NULL);
+		return (NULL);
 
 	/* if head is null, next points to null */
 	if (*head == NULL)
