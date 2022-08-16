@@ -29,6 +29,5 @@ int main(void)
     n = pop_listint(&head);
     printf("- %d\n", n);
     print_listint(head);
-    printf("%p\n", (void *)head);
     return (0);
 }
