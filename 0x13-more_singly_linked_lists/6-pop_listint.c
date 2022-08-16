@@ -2,7 +2,7 @@
 
 /**
  * pop_listint - frees listint_t first node and return its data
- *  @head: pointer to head 
+ * @head: pointer to head
  *
  * Return: data in data field
  */
@@ -17,11 +17,13 @@ int pop_listint(listint_t **head)
 
 	/* set head address to temp */
 	temp = *head;
-	/*get data in first node */
-	data = temp->n;
+
 	/* get next pointer in first node */
 	next = temp->next;
 
+	/*get data in first node */
+	data = temp->n;
+	
 	/*free first node */
 	free(temp);
 
