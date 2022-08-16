@@ -33,7 +33,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	if (idx == 0)
 	{
 		/* set newnode as first node */
-		newnode->next =*head
+		newnode->next =*head;
 		*head = newnode;
 	}
 	else if (current->next)
