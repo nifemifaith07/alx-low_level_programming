@@ -12,7 +12,7 @@ int pop_listint(listint_t **head)
 	listint_t *temp, *next;
 	int data;
 
-	if (head == NULL)
+	if (*head == NULL)
 		return (0);
 
 	/* set head address to temp */
