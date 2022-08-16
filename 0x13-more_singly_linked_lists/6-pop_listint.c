@@ -23,7 +23,7 @@ int pop_listint(listint_t **head)
 
 	/*get data in first node */
 	data = temp->n;
-	
+
 	/*free first node */
 	free(temp);
 
