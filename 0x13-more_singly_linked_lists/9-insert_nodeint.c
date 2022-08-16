@@ -45,7 +45,7 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	else
 	{
 		/* if position is not present in list */
-		newnode->next == NULL; /* set newnode as last node */
+		newnode->next = NULL; /* set newnode as last node */
 		current->next = newnode;
 	}
 
