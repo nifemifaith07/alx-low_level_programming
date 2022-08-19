@@ -2,11 +2,11 @@
 
 /**
  * _Atoi - converts chars to integers
- * @str: pointer to string containing the chars
+ * @c: pointer to string containing the chars
  *
  * Return: unsigned int equivalent of the chars
  */
- 
+
 unsigned int _Atoi(char c)
 {
 	return ((unsigned int) c - '0');
@@ -34,7 +34,7 @@ unsigned int _Slen(const char *s)
  * @b: pointer to binary chars
  *
  * Return: 0 if b is Null or contains non binary digits
- * 	or number converted 
+ * or number converted
  */
 
 unsigned int binary_to_uint(const char *b)
@@ -59,6 +59,5 @@ unsigned int binary_to_uint(const char *b)
 		printf("Result is %u.\n", dec);
 		#endif
 	}
-	
 	return (dec);
 }
