@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-
 
 unsigned int myAtoi(const char *str)
 {
@@ -15,14 +13,39 @@ unsigned int myAtoi(const char *str)
 }
 int main(void)
 {
-
-	char str[] = "100101";
-
+	char str[] = "111";
 	unsigned int val = myAtoi(str);
-
-	printf("%d ", val);
-
+	unsigned int val2 = binary_to_uint(str);
+	
+	printf("value in binary is %u\n and in decimal is %u\n", val, val2);
 	return 0;
 } 
 
-/* unsigned int binary_to_uint(const char *b) */
+unsigned int binary_to_uint(const char *b)
+{
+	unsigned int dec = 0;
+	unsigned int last, num;
+	unsigned int base = 1;
+
+
+	if (b == NULL)
+		return (0);
+
+	num = atoi(b);
+
+	while (num)
+	{
+		last = num % 10;
+		if (last = 0 || 1)
+		{
+			num = num / 10;
+
+			dec += last * base;
+			base = base * 2;
+		}
+		else
+			return (0);
+	}
+
+	return (dec);
+}
