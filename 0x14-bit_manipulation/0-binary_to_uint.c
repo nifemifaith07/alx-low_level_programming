@@ -1,26 +1,17 @@
-#include ‘main.h"
+#include "main.h"
 #include <stdio.h>
 
-
-unsigned int myAtoi(const char *str);
 
 unsigned int myAtoi(const char *str)
 {
 	unsigned int res = 0;
-	int sign = 1;
 	int i = 0;
 
-	if (str[0] == '-')
-	{
-		sign = -1;
-		i++;
-
-	}
 	for (; str[i] != '\0'; ++i)
 
 		res = res * 10 + str[i] - '0';
 
-	return (sign * res);
+	return (res);
 }
 int main(void)
 {
