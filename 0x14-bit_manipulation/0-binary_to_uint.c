@@ -49,7 +49,7 @@ unsigned int binary_to_uint(const char *b)
 
 	num = _Atoi(b);
 	if (num = 0)
-		return (0):
+		return (0);
 	while (num)
 	{
 		last = num % 10;
