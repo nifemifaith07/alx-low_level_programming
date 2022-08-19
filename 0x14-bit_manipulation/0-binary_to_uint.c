@@ -39,7 +39,8 @@ unsigned int _Slen(const char *s)
 
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int last, idx, base = 1, dec = 0;
+	int idx;
+	unsigned int last, base = 1, dec = 0;
 
 	if (b == NULL)
 		return (0);
