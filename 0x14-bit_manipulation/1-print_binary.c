@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _Length - finds length of an integer by getting 
+ * _Length - finds length of an integer by getting
  * the number of times the integer can be divided by 2
  * @n: integer parameter
  *
