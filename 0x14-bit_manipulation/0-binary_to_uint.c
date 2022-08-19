@@ -11,15 +11,6 @@ unsigned int _Atoi(const char *str)
 
 	return (res);
 }
-int main(void)
-{
-	char str[] = "111";
-	unsigned int val = _Atoi(str);
-	unsigned int val2 = binary_to_uint(str);
-	
-	printf("value in binary is %u\n and in decimal is %u\n", val, val2);
-	return 0;
-} 
 
 unsigned int binary_to_uint(const char *b)
 {
