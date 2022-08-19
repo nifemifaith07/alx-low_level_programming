@@ -27,7 +27,7 @@ unsigned int binary_to_uint(const char *b)
 	while (num)
 	{
 		last = num % 10;
-		if (last = 0 || 1)
+		if (last == 0 || 1)
 		{
 			num = num / 10;
 
