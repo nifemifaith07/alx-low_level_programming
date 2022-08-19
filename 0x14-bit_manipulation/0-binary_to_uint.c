@@ -1,32 +1,32 @@
 #include "main.h"
 
 /**
- * _Atoi - converts chars to binary integers
+ * _Atoi - converts chars to integers
  * @str: pointer to string containing the chars
  *
- * Return: equivalent binary integer or
- * 	0 if non binary digit is found
+ * Return: unsigned int equivalent of the chars
  */
  
-unsigned int _Atoi(const char *str)
+unsigned int _Atoi(char c)
 {
-	unsigned int res = 0;
-	int i = 0;
-	unsigned int num;
+	return ((unsigned int) c + '0');
+}
 
-	for (; str[i] != '\0'; ++i)
-		res = res * 10 + str[i] - '0';
-	/* test if res contains only binary digits */
-	num = res;
-	while (num)
-	{
-		if (num % 10 > 1) /* if non binary found return 0 */
-			return (0);
+/**
+* _Slen - returns the lenght of a string
+* @s: pointer to string
+*
+* Return: string lenght
+*/
 
-		num = num / 10;
-	}
+unsigned int _Slen(const char *s)
+{
+	unsigned int j = 0;
 
-	return (res);
+	while (s[j] != '\0')
+		j++;
+
+	return (j);
 }
 
 /**
@@ -39,23 +39,25 @@ unsigned int _Atoi(const char *str)
 
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int dec = 0;
-	unsigned int last, num;
-	unsigned int base = 1;
-
+	unsigned int last, idx, base = 1, dec = 0;
 
 	if (b == NULL)
 		return (0);
 
-	num = _Atoi(b);
-	while (num)
+	for (idx = (_Slen(b) - 1); idx >= 0; idx--)
 	{
-		last = num % 10;
-		num = num / 10;
+		last = _Atoi(b[idx]); /* convert char to int */
+
+		if (last != 0 && last != 1)
+			return (0);
 
 		dec += last * base;
-		base = base * 2;
-	}
+		base *= 2;
 
+		#ifdef DEBUG /*print debug statements*/
+		printf("Result is %u.\n", dec);
+		#endif
+	}
+	
 	return (dec);
 }
