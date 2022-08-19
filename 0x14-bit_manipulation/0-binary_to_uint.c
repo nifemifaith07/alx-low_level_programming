@@ -9,7 +9,7 @@
  
 unsigned int _Atoi(char c)
 {
-	return ((unsigned int) c + '0');
+	return ((unsigned int) c - '0');
 }
 
 /**
