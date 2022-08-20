@@ -18,9 +18,9 @@ int clear_bit(unsigned long int *n, unsigned int index)
 	if (index > INT_BITS)
 		return (-1);
 
-	post = post << index;
+	post = ~(post << index);
 
-	*n = (*n ^ post);
+	*n = (*n & post);
 
 	return (1);
 }
