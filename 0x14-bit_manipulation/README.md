@@ -1,6 +1,6 @@
 # 0x14-bit_manipulation
 
- ![img](../.imgs/bit_manipulation.png) 
+ ![img](../.imgs/bit_Manipulation.png) 
  
 ## Resources
 
