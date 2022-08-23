@@ -19,7 +19,7 @@ int create_file(const char *filename, char *text_content)
 	* open file with create, write only, truncate flags
 	* with read and write access for user only
 	*/
-	file_d = open(filename, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR, S_IWUSR)
+	file_d = open(filename, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR, S_IWUSR);
 	if (file_d == -1) /* check if opening and creation failed */
 		return (-1);
 
