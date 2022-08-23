@@ -23,14 +23,14 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 
 	buf = malloc(sizeof(char) * letters);
-	if (buf = NULL)
+	if (buf == NULL)
 	{
 		free(buf);
 		return (0);
 	}
 
 	r_count = read(file_d, buf, letters); /* read file */
-	if (r_read == -1)
+	if (r_count == -1)
 		return (0);
 
 	w_count = write(STDOUT_FILENO, buf, r_read); /* write file */
