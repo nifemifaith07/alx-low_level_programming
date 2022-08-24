@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 	if (file_in == -1)
 		__exit(98, argv[1], 0);
 
-	file_out =open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
+	file_out = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
 	if (file_out == -1)
 		__exit(99, argv[2], 0);
 
