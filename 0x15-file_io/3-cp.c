@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 	int file_in, file_out, close_in;
 	int close_out, r_stat, w_stat;
 	char buffer[MAXSIZE];
-	
+
 	if (argc != 3)
 		__exit(97, NULL, 0);
 
