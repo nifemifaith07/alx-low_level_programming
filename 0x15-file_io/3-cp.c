@@ -18,10 +18,10 @@ int __exit(int error, char *str, int fd)
 			dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 			exit(error);
 		case 98:
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", fd);
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", str);
 			exit(error);
 		case 99:
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", fd);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", str);
 			exit(error);
 		case 100:
 			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 	int file_in, file_out, close_in;
 	int close_out, r_stat, w_stat;
 	char buffer[MAXSIZE];
-	
+
 	if (argc != 3)
 		__exit(97, NULL, 0);
 
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 	if (file_in == -1)
 		__exit(98, argv[1], 0);
 
-	file_out =open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
+	file_out = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
 	if (file_out == -1)
 		__exit(99, argv[2], 0);
 
