@@ -172,7 +172,11 @@ int main(int argc, char *argv[])
 			printf("<unknown: %x\n", elfHdr.e_type);
 	}
 
-	printf("  Entry point address:               0x%.8x\n", elfHdr.e_entry);
+	printf("  Entry point address:               ");
+	if (elfHdr.e_ident[EI_CLASS] == ELFCLASS32)
+		printf("%#x\n", (unsigned int)elfHdr.e_entry);
+	else
+		printf("%#lx\n", elfHr.e_entry);
 
    /* //premik do section tabele
 
