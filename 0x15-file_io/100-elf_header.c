@@ -31,18 +31,14 @@ int main(int argc, char *argv[])
 	}
 
 	j = 0;
-	while (j < 4)
-	{
-		if (elfHdr.e_ident[j] != 127 &&
-		    elfHdr.e_ident[j] != 'E' &&
-		    elfHdr.e_ident[j] != 'L' &&
-		    elfHdr.e_ident[j] != 'F') /*0x7F is 127 in ASCII*/
-		{
-			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
-			exit(98);
-		}
 
-		j++;
+	if (elfHdr.e_ident[EI_MAG0] != 127 &&
+	    elfHdr.e_ident[EI_MAG1] != 'E' &&
+	    elfHdr.e_ident[EI_MAG2] != 'L' &&
+	    elfHdr.e_ident[EI_MAG3] != 'F') /*0x7F is 127 in ASCII*/
+	{
+		dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
+		exit(98);
 	}
 
 	fread(&elfHdr, 1, sizeof(elfHdr), ElfFile);
