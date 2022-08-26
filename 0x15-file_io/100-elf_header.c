@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 	FILE* ElfFile = NULL;
 	char* SectNames = NULL;
 
-	check_if_elf(elfHdr.ei_dent);
+	check_if_elf(elfHdr.e_ident);
 
 	if(argc != 2)
 	{
