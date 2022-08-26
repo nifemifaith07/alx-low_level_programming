@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define EI_NIDENT 16
+/* #define EI_NIDENT 16 */
 
 int main(int argc, char *argv[])
 {
