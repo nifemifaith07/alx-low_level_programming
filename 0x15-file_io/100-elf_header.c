@@ -7,53 +7,81 @@
 
 #define EI_NIDENT 16
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
+	int i, j, fd, val;
 
-    int i;
-    int fd;
-    int val;
-    Elf32_Ehdr elfHdr;
-    Elf32_Shdr sectHdr;
-    FILE* ElfFile = NULL;
-    char* SectNames = NULL;
+	Elf32_Ehdr elfHdr;
+	Elf32_Shdr sectHdr;
+	FILE* ElfFile = NULL;
+	char* SectNames = NULL;
 
-    if(argc != 2) {
+	if(argc != 2)
+	{
+		perror("Usage: elf_header elf_filename\n");
+		exit(98);
+	}   
 
-        perror("Error while opening file");
+	ElfFile = fopen(argv[1], "r");
+	if(ElfFile == NULL)
+	{
+		printf("Error: can't read file\n");
+		exit(98);
+	}
 
-        return 0;
+	j = 0;
+	while (j < 4)
+	{
+		if (elfHdr.e_ident[j] != 127 &&
+		    elfHdr.e_ident[j] != 'E' &&
+		    elfHdr.e_ident[j] != 'L' &&
+		    elfHdr.e_ident[j] != 'F') /*0x7F is 127 in ASCII*/
+		{
+			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
+			exit(98);
+		}
 
-    }   
+		j++;
+	}
 
-    ElfFile = fopen(argv[1], "r");
+	fread(&elfHdr, 1, sizeof(elfHdr), ElfFile);
 
-    if(ElfFile == NULL) {
+	printf("  Magic:  ");
+	for (i = 0; i < EI_NIDENT; i++)
+		printf(" %.2x", elfHdr.e_ident[i]);
+	printf("\n");
 
-        printf("fopen");
+	printf("  Class:                             ");
+	switch (elfHdr.e_ident[EI_CLASS]) /*EI_CLASS - File class*/
+	{
+		case ELFCLASSNONE:
+			printf("none\n");
+			break;
+		case ELFCLASS32:
+			printf("ELF32\n");
+			break;
+		case ELFCLASS64:
+			printf("ELF64\n");
+			break;
+		default:
+			printf("<unknown: %x>\n", elfHdr.e_ident[EI_CLASS]);
+	}
 
-        return -1;
-
-    }
-
-    //preberemo elf header
-
-    fread(&elfHdr, 1, sizeof(elfHdr), ElfFile);
-
-    printf("\tMagic: ");
-
- 
-
-    for (i = 0; i < EI_NIDENT; i++)
-
-	    printf(" %.2x", elfHdr.e_ident[i]);
-
-    printf("\n");
-
-    printf("\tVersion: 0x%.2X\n", elfHdr.e_version);
-
-    printf("\tEntry point address: 0x%.8X\n", elfHdr.e_entry);
-
-    printf("\tProgram header offset: 0x%.8X\n", elfHdr.e_phoff);
+	printf("  Data:                              ");
+	switch (elfHdr.e_ident[EI_DATA]) /*EI_DATA - Data encoding*/
+	{
+		case ELFDATANONE:
+			printf("none\n");
+			break;
+		case ELFDATA2LSB:
+			printf("2's complement, little endian\n");
+			break;
+		case ELFDATA2MSB:
+			printf("2's complement, big endian\n");
+			break;
+		default:
+			printf("<unknown: %x>\n", elfHdr.e_ident[EI_DATA]);
+	}
 
     printf("\tSection header offset: 0x%.8X\n", elfHdr.e_shoff);
 
@@ -70,6 +98,8 @@ int main(int argc, char *argv[]) {
     printf("\tNumber of section headers: %d\n", elfHdr.e_shnum);
 
     printf("\tSection header string table index: 0x%X\n", elfHdr.e_shstrndx);
+
+    printf("\tEntry point address: 0x%.8X\n", elfHdr.e_entry);
 
     //premik do section tabele
 
