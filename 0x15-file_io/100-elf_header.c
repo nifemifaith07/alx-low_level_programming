@@ -33,7 +33,7 @@ void if_elf(unsigned char *e_ident)
 
 int main(int argc, char *argv[])
 {
-	int i, j, fd, val;
+	int i, fd;
 
 	Elf64_Ehdr elfHdr;
 	FILE* ElfFile = NULL;
@@ -178,7 +178,7 @@ int main(int argc, char *argv[])
 	else
 		printf("%#lx\n", elfHdr.e_entry);
 
-	close(fd);
+	fclose(ElfFile);
 
 	return 0;
 }
