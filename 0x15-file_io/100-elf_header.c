@@ -12,8 +12,8 @@ int main(int argc, char *argv[])
 {
 	int i, j, fd, val;
 
-	ElfN_Ehdr elfHdr;
-	ElfN_Shdr sectHdr;
+	Elf64_Ehdr elfHdr;
+	Elf64_Shdr sectHdr;
 	FILE* ElfFile = NULL;
 	char* SectNames = NULL;
 
