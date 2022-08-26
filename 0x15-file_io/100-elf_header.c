@@ -142,7 +142,7 @@ int main(int argc, char *argv[])
 			printf("Standalone App\n");
 			break;
 		default:
-			printf("<unknown: %x>\n", e_ident[EI_OSABI]);
+			printf("<unknown: %x>\n", elfHdr.e_ident[EI_OSABI]);
 	}
 
     printf("\tSize of this header: 0x%X\n", elfHdr.e_ehsize);
