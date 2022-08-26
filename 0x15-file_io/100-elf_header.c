@@ -8,10 +8,10 @@
 
 /* #define EI_NIDENT 16 */
 
- void check_if_elf(unsigned char *e_ident)
+void check_if_elf(unsigned char *e_ident)
 {
-	if (e_ident[0] != 127 || e_ident[1] != 'E' ||
-	    e_ident[2] != 'L' || e_ident[4] != 'F') /*0x7F is 127 in ASCII*/
+	if (e_ident[0] != 0x7F || e_ident[1] != 0x45 ||
+	    e_ident[2] != 0x4c || e_ident[3] != 0x46) /*0x7F is 127 in ASCII*/
 	{
 		dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 		exit(98);
@@ -27,8 +27,6 @@ int main(int argc, char *argv[])
 	FILE* ElfFile = NULL;
 	char* SectNames = NULL;
 
-	check_if_elf(elfHdr.e_ident);
-
 	if(argc != 2)
 	{
 		perror("Usage: elf_header elf_filename\n");
@@ -43,6 +41,8 @@ int main(int argc, char *argv[])
 	}
 
 	fread(&elfHdr, 1, sizeof(elfHdr), ElfFile);
+
+	check_if_elf(elfHdr.e_ident);
 
 	printf("  Magic:  ");
 	for (i = 0; i < EI_NIDENT; i++)
