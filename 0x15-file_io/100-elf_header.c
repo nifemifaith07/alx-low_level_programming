@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -144,12 +145,34 @@ int main(int argc, char *argv[])
 		default:
 			printf("<unknown: %x>\n", elfHdr.e_ident[EI_OSABI]);
 	}
+ 
+	/* PRINT ABI VERSION TO WHICH THE OBJECT IS TARGETED */
+	printf("  ABI Version:                       %d\n",
+	       elfHdr.e_ident[EI_ABIVERSION]);
 
-    /*printf("\tSize of this header: 0x%X\n", elfHdr.e_ehsize);
+	printf("  Type:                              ");
+	switch (elfHdr.e_type)
+	{
+		case ET_NONE:
+			printf("NONE (Unknown type)\n");
+			break;
+		case ET_REL:
+			printf("REL (Relocatable file)\n");
+			break;
+		case ET_EXEC:
+			printf("EXEC (Exexutable file)\n");
+			break;
+		case ET_DYN:
+			printf("DYN (Shared object file)\n");
+			break;
+		case ET_CORE:
+			printf("CORE (Core file)\n");
+			break;
+		default:
+			printf("<unknown: %x\n", elfHdr.e_type);
+	}
 
-    printf("\tSize of program headers: 0x%X\n", elfHdr.e_phentsize);
-
-    printf("\tNumber of program headers: %d\n", elfHdr.e_phnum);
+    /*printf("\tNumber of program headers: %d\n", elfHdr.e_phnum);
 
     printf("\tSize of section headers: 0x%X\n", elfHdr.e_shentsize);
 
