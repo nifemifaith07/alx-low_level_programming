@@ -172,17 +172,9 @@ int main(int argc, char *argv[])
 			printf("<unknown: %x\n", elfHdr.e_type);
 	}
 
-    /*printf("\tNumber of program headers: %d\n", elfHdr.e_phnum);
+	printf("  Entry point address:               0x%.8x\n", elfHdr.e_entry);
 
-    printf("\tSize of section headers: 0x%X\n", elfHdr.e_shentsize);
-
-    printf("\tNumber of section headers: %d\n", elfHdr.e_shnum);
-
-    printf("\tSection header string table index: 0x%X\n", elfHdr.e_shstrndx);
-
-    printf("\tEntry point address: 0x%.8X\n", elfHdr.e_entry);
-
-    //premik do section tabele
+   /* //premik do section tabele
 
     fseek(ElfFile, elfHdr.e_shoff + elfHdr.e_shstrndx * elfHdr.e_shentsize, SEEK_SET);
 
