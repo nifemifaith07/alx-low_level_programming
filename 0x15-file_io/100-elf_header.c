@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 
 	j = 0;
 
-	if (elfHdr.e_ident[EI_MAG0] != 127 &&
+	if (elfHdr.e_ident[EI_MAG0] != 7f &&
 	    elfHdr.e_ident[EI_MAG1] != 'E' &&
 	    elfHdr.e_ident[EI_MAG2] != 'L' &&
 	    elfHdr.e_ident[EI_MAG3] != 'F') /*0x7F is 127 in ASCii */
