@@ -8,6 +8,35 @@
 
 /* #define EI_NIDENT 16 */
 
+ void check_if_elf(unsigned char *e_ident)
+{
+	 int index = 0;
+
+	 while (index < 4)
+	 {
+
+		if (e_ident[index] != 127 &&
+
+		    e_ident[index] != 'E' &&
+
+		    e_ident[index] != 'L' &&
+
+		    e_ident[index] != 'F') /*0x7F is 127 in ASCII*/
+
+		{
+
+			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
+
+			exit(98);
+
+		}
+
+		index++;
+
+	}
+
+} 
+
 int main(int argc, char *argv[])
 {
 	int i, j, fd, val;
@@ -16,6 +45,8 @@ int main(int argc, char *argv[])
 	Elf64_Shdr sectHdr;
 	FILE* ElfFile = NULL;
 	char* SectNames = NULL;
+
+	check_if_elf(elfHdr.ei_dent);
 
 	if(argc != 2)
 	{
@@ -27,17 +58,6 @@ int main(int argc, char *argv[])
 	if(ElfFile == NULL)
 	{
 		printf("Error: can't read file\n");
-		exit(98);
-	}
-
-	j = 0;
-
-	if (elfHdr.e_ident[EI_MAG0] != 7f &&
-	    elfHdr.e_ident[EI_MAG1] != 'E' &&
-	    elfHdr.e_ident[EI_MAG2] != 'L' &&
-	    elfHdr.e_ident[EI_MAG3] != 'F') /*0x7F is 127 in ASCii */
-	{
-		dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 		exit(98);
 	}
 
