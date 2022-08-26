@@ -32,10 +32,12 @@ int main(int argc, char *argv[])
 
 	j = 0;
 
-	if (elfHdr.e_ident[EI_MAG0] != 127 &&
-	    elfHdr.e_ident[EI_MAG1] != 'E' &&
-	    elfHdr.e_ident[EI_MAG2] != 'L' &&
-	    elfHdr.e_ident[EI_MAG3] != 'F') /*0x7F is 127 in ASCII*/
+	if (elfHdr.e_ident[EI_MAG0] == 127 &&
+	    elfHdr.e_ident[EI_MAG1] == 'E' &&
+	    elfHdr.e_ident[EI_MAG2] == 'L' &&
+	    elfHdr.e_ident[EI_MAG3] == 'F') /*0x7F is 127 in ASCII*/
+		continue;
+	else
 	{
 		dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 		exit(98);
