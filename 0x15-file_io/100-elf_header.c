@@ -5,10 +5,15 @@
 #include <elf.h>
 #include <stdlib.h>
 #include <unistd.h>
+/* #define EI_NIDENT 16[no need already defined in elf.h] */
 
-/* #define EI_NIDENT 16 */
+/**
+ * if_elf - checks if file is elf file
+ * @e_ident: array that specify how to read the file
+ * Return: nothing
+ */
 
-void check_if_elf(unsigned char *e_ident)
+void if_elf(unsigned char *e_ident)
 {
 	if (e_ident[0] != 0x7F || e_ident[1] != 0x45 ||
 	    e_ident[2] != 0x4c || e_ident[3] != 0x46) /*0x7F is 127 in ASCII*/
@@ -18,21 +23,28 @@ void check_if_elf(unsigned char *e_ident)
 	}
 } 
 
+/**
+ * main - entry point
+ * @argc: argument count
+ * @argv: argument vector
+ * Return: 0(success)
+ */
+
 int main(int argc, char *argv[])
 {
 	int i, j, fd, val;
 
 	Elf64_Ehdr elfHdr;
-	Elf64_Shdr sectHdr;
 	FILE* ElfFile = NULL;
-	char* SectNames = NULL;
 
+	/* no of arguments must be two */
 	if(argc != 2)
 	{
 		perror("Usage: elf_header elf_filename\n");
 		exit(98);
 	}   
 
+	/* open filename with read only flag */
 	ElfFile = fopen(argv[1], "r");
 	if(ElfFile == NULL)
 	{
@@ -40,17 +52,20 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 
+	/* read file */
 	fread(&elfHdr, 1, sizeof(elfHdr), ElfFile);
 
-	check_if_elf(elfHdr.e_ident);
+	if_elf(elfHdr.e_ident); /* check if elf */
 
+	/* PRINT MAGIC NUMBER AND E_IDENT BYTES */
 	printf("  Magic:  ");
 	for (i = 0; i < EI_NIDENT; i++)
 		printf(" %.2x", elfHdr.e_ident[i]);
 	printf("\n");
 
+	/* PRINT CLASS - FILE ARCHITECTURE */
 	printf("  Class:                             ");
-	switch (elfHdr.e_ident[EI_CLASS]) /*EI_CLASS - File class*/
+	switch (elfHdr.e_ident[EI_CLASS])
 	{
 		case ELFCLASSNONE:
 			printf("none\n");
@@ -65,8 +80,9 @@ int main(int argc, char *argv[])
 			printf("<unknown: %x>\n", elfHdr.e_ident[EI_CLASS]);
 	}
 
+	/* PRINT DATA ENCODING OF THE PROCESSOR_SPECIFIC DATA IN THE FILE */
 	printf("  Data:                              ");
-	switch (elfHdr.e_ident[EI_DATA]) /*EI_DATA - Data encoding*/
+	switch (elfHdr.e_ident[EI_DATA])
 	{
 		case ELFDATANONE:
 			printf("none\n");
@@ -81,9 +97,53 @@ int main(int argc, char *argv[])
 			printf("<unknown: %x>\n", elfHdr.e_ident[EI_DATA]);
 	}
 
-    printf("\tSection header offset: 0x%.8X\n", elfHdr.e_shoff);
+	/* PRINT VERSION OF THE ELF SPECIFICATION */
+	printf("  Version:                           ");
+	if (elfHdr.e_ident[EI_VERSION] == EV_CURRENT)
+		printf("%d (current)\n", elfHdr.e_ident[EI_VERSION]);
+	else
+		printf("%i (invalid)\n", elfHdr.e_ident[EI_VERSION]);
 
-    printf("\tFlags: 0x%.8X\n", elfHdr.e_flags);
+	/* PRINT OPERATING SYSTEM&ABI TO WHICH THE OBJECT IS DIRECTED */
+	printf("  OS/ABI:                            ");
+	switch (elfHdr.e_ident[EI_OSABI])
+	{
+		case ELFOSABI_SYSV:
+			printf("UNIX - System V\n");
+			break;
+		case ELFOSABI_HPUX:
+			printf("UNIX - HP-UX\n");
+			break;
+		case ELFOSABI_NETBSD:
+			printf("UNIX - NetBSD\n");
+			break;
+		case ELFOSABI_LINUX:
+			printf("UNIX - Linux\n");
+			break;
+		case ELFOSABI_SOLARIS:
+			printf("UNIX - Solaris\n");
+			break;
+		case ELFOSABI_AIX:
+			printf("UNIX - AIX\n");
+			break;
+		case ELFOSABI_IRIX:
+			printf("UNIX - IRIX\n");
+			break;
+		case ELFOSABI_FREEBSD:
+			printf("UNIX - FreeBSD\n");
+			break;
+		case ELFOSABI_TRU64:
+			printf("UNIX - TRU64\n");
+			break;
+		case ELFOSABI_ARM:
+			printf("ARM\n");
+			break;
+		case ELFOSABI_STANDALONE:
+			printf("Standalone App\n");
+			break;
+		default:
+			printf("<unknown: %x>\n", e_ident[EI_OSABI]);
+	}
 
     printf("\tSize of this header: 0x%X\n", elfHdr.e_ehsize);
 
