@@ -15,11 +15,11 @@
 	 while (index < 4)
 	 {
 
-		if (e_ident[index] != 127 &&
+		if (e_ident[index] != 127 ||
 
-		    e_ident[index] != 'E' &&
+		    e_ident[index] != 'E' ||
 
-		    e_ident[index] != 'L' &&
+		    e_ident[index] != 'L' ||
 
 		    e_ident[index] != 'F') /*0x7F is 127 in ASCII*/
 
