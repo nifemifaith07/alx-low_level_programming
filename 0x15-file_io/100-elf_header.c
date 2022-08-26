@@ -176,42 +176,9 @@ int main(int argc, char *argv[])
 	if (elfHdr.e_ident[EI_CLASS] == ELFCLASS32)
 		printf("%#x\n", (unsigned int)elfHdr.e_entry);
 	else
-		printf("%#lx\n", elfHr.e_entry);
+		printf("%#lx\n", elfHdr.e_entry);
 
-   /* //premik do section tabele
+	close(fd);
 
-    fseek(ElfFile, elfHdr.e_shoff + elfHdr.e_shstrndx * elfHdr.e_shentsize, SEEK_SET);
-
-    fread(&sectHdr, 1, sizeof(sectHdr), ElfFile);
-
-    SectNames = malloc(sectHdr.sh_size);
-
-    fseek(ElfFile, sectHdr.sh_offset, SEEK_SET);
-
-    fread(SectNames, 1, sectHdr.sh_size, ElfFile);
-
-    for (int idx = 0; idx < elfHdr.e_shnum; idx++){
-
-        char* name = "";
-
-        fseek(ElfFile, elfHdr.e_shoff + idx * sizeof(sectHdr), SEEK_SET);
-
-        fread(&sectHdr, 1, sizeof(sectHdr), ElfFile);
-
-        // print section name
-
-        if (sectHdr.sh_name);
-
-        name = SectNames + sectHdr.sh_name;
-
-            
-
-        printf("%i %s\n", idx, name);
-
-    }*/
-
-    close(fd);
-
-    return 0;
-
-} 
+	return 0;
+}
