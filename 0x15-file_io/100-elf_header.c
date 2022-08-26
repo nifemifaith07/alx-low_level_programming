@@ -4,6 +4,7 @@
 #include <fcntl.h>
 #include <elf.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #define EI_NIDENT 16
 
