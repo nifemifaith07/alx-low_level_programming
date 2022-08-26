@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
 			printf("<unknown: %x>\n", elfHdr.e_ident[EI_OSABI]);
 	}
 
-    printf("\tSize of this header: 0x%X\n", elfHdr.e_ehsize);
+    /*printf("\tSize of this header: 0x%X\n", elfHdr.e_ehsize);
 
     printf("\tSize of program headers: 0x%X\n", elfHdr.e_phentsize);
 
@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 
         printf("%i %s\n", idx, name);
 
-    }
+    }*/
 
     close(fd);
 
