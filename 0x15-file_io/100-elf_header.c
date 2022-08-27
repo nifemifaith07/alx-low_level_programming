@@ -222,18 +222,18 @@ void print_entry(unsigned long int e_entry, unsigned char *e_ident)
 }
 
 /**
- * close_file - closes the ELF file
+ * _close - closes the ELF file
  *
- * @Elffile: the file descriptor for the ELF file
+ * @ElfFile: the file descriptor for the ELF file
  *
  * Return: nothing
 */
-void _close(int Elffile)
+void _close(int ElfFile)
 {
-	if (close(Elffile) == -1)
+	if (close(ElfFile) == -1)
 	{
 		dprintf(STDERR_FILENO,
-			"Error: Can't close fd %d\n", Elffile);
+			"Error: Can't close fd %d\n", ElfFile);
 		exit(98);
 	}
 }
@@ -254,7 +254,6 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 	{
 		perror("Usage: elf_header elf_filename\n");
-		exit(98);
 	}
 	ElfFile = open(argv[1], O_RDONLY);
 	if (ElfFile == -1)
@@ -278,8 +277,6 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
 		exit(98);
 	}
-	/*if_elf(elfHdr->e_ident); check if elf */
-	/*printf("ELF Header:\n");*/
 	print_magic(elfHdr->e_ident);
 	print_class(elfHdr->e_ident);
 	print_data(elfHdr->e_ident);
