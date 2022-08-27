@@ -253,7 +253,8 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		perror("Usage: elf_header elf_filename\n");
+		dprintf(STDERR_FILENO, "Usage: elf_header elf_filename\n");
+		exit(98);
 	}
 	ElfFile = open(argv[1], O_RDONLY);
 	if (ElfFile == -1)
