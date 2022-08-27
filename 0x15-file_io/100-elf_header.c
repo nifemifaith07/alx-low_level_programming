@@ -68,6 +68,7 @@ int main(int argc, char *argv[])
 	printf("  Class:                             ");
 	switch (elfHdr.e_ident[EI_CLASS])
 	{
+
 		case ELFCLASSNONE:
 			printf("none\n");
 			break;
@@ -149,6 +150,9 @@ int main(int argc, char *argv[])
 	/* PRINT ABI VERSION TO WHICH THE OBJECT IS TARGETED */
 	printf("  ABI Version:                       %d\n",
 	       elfHdr.e_ident[EI_ABIVERSION]);
+
+	if (elfHdr.e_ident[EI_DATA] == ELFDATA2MSB)
+		elfHdr.e_type >>= 8;
 
 	printf("  Type:                              ");
 	switch (elfHdr.e_type)
