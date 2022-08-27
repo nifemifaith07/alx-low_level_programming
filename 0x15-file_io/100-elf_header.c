@@ -1,11 +1,4 @@
-
-#include <stdio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <elf.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "main.h"
 /* #define EI_NIDENT 16[no need already defined in elf.h] */
 
 /**
@@ -58,6 +51,8 @@ int main(int argc, char *argv[])
 
 	if_elf(elfHdr.e_ident); /* check if elf */
 
+	printf("ELF Header:\n");
+
 	/* PRINT MAGIC NUMBER AND E_IDENT BYTES */
 	printf("  Magic:  ");
 	for (i = 0; i < EI_NIDENT; i++)
@@ -79,10 +74,11 @@ int main(int argc, char *argv[])
 			printf("ELF64\n");
 			break;
 		default:
-			printf("<unknown: %x>\n", elfHdr.e_ident[EI_CLASS]);
+			printf("<unknown: %x>\n",
+			       elfHdr.e_ident[EI_CLASS]);
 	}
 
-	/* PRINT DATA ENCODING OF THE PROCESSOR_SPECIFIC DATA IN THE FILE */
+	/* PRINT DATA ENCODING*/
 	printf("  Data:                              ");
 	switch (elfHdr.e_ident[EI_DATA])
 	{
@@ -96,17 +92,20 @@ int main(int argc, char *argv[])
 			printf("2's complement, big endian\n");
 			break;
 		default:
-			printf("<unknown: %x>\n", elfHdr.e_ident[EI_DATA]);
+			printf("<unknown: %x>\n",
+			       elfHdr.e_ident[EI_DATA]);
 	}
 
 	/* PRINT VERSION OF THE ELF SPECIFICATION */
 	printf("  Version:                           ");
 	if (elfHdr.e_ident[EI_VERSION] == EV_CURRENT)
-		printf("%d (current)\n", elfHdr.e_ident[EI_VERSION]);
+		printf("%d (current)\n",
+		       elfHdr.e_ident[EI_VERSION]);
 	else
-		printf("%i (invalid)\n", elfHdr.e_ident[EI_VERSION]);
+		printf("%i (invalid)\n",
+		       elfHdr.e_ident[EI_VERSION]);
 
-	/* PRINT OPERATING SYSTEM&ABI TO WHICH THE OBJECT IS DIRECTED */
+	/* PRINT OS/ABI TO WHICH THE OBJECT IS DIRECTED */
 	printf("  OS/ABI:                            ");
 	switch (elfHdr.e_ident[EI_OSABI])
 	{
@@ -144,7 +143,8 @@ int main(int argc, char *argv[])
 			printf("Standalone App\n");
 			break;
 		default:
-			printf("<unknown: %x>\n", elfHdr.e_ident[EI_OSABI]);
+			printf("<unknown: %x>\n",
+			       elfHdr.e_ident[EI_OSABI]);
 	}
  
 	/* PRINT ABI VERSION TO WHICH THE OBJECT IS TARGETED */
@@ -184,7 +184,8 @@ int main(int argc, char *argv[])
 		elfHdr.e_entry = (elfHdr.e_entry << 16) | (elfHdr.e_entry >> 16);
 	}
 	if (elfHdr.e_ident[EI_CLASS] == ELFCLASS32)
-		printf("%#x\n", (unsigned int)elfHdr.e_entry);
+		printf("%#x\n",
+		       (unsigned int)elfHdr.e_entry);
 	else
 		printf("%#lx\n", elfHdr.e_entry);
 
