@@ -137,7 +137,7 @@ void print_osabi(unsigned char *e_ident)
 
 /**
  * print_version - prints
- * @e_indent: array
+ * @e_ident: array
  * Return: nothing
  */
 
@@ -164,6 +164,7 @@ void print_abi(unsigned char *e_ident)
 /**
  * print_type - prints
  * @e_ident: array
+ * @e_type: type
  * Return: nothing
  */
 void print_type(unsigned int e_type, unsigned char *e_ident)
