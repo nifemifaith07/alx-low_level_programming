@@ -194,6 +194,47 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 			printf("<unknown: %x\n", e_type);
 	}
 }
+/**
+ * print_entry - prints
+ * @e_entry: entry
+ * @e_ident: array
+ * Return: nothing
+ */
+
+void print_entry(unsigned long int e_entry, unsigned char *e_ident)
+{
+	printf("  Entry point address:               ");
+
+	if (e_ident[EI_DATA] == ELFDATA2MSB)
+	{
+		e_entry = ((e_entry << 8) & 0xFF00FF00) |
+			  ((e_entry >> 8) & 0xFF00FF);
+		e_entry = (e_entry << 16) | (e_entry >> 16);
+	}
+
+	if (e_ident[EI_CLASS] == ELFCLASS32)
+		printf("%#x\n", (unsigned int)e_entry);
+	else
+		printf("%#lx\n", e_entry);
+}
+
+/**
+ * close_file - closes the ELF file
+ *
+ * @Elffile: the file descriptor for the ELF file
+ *
+ * Return: nothing
+*/
+void _close(int Elffile)
+{
+	if (close(Elffile) == -1)
+	{
+		dprintf(STDERR_FILENO,
+			"Error: Can't close fd %d\n", Elffile);
+		exit(98);
+	}
+}
+
 
 /**
  * main - entry point
@@ -206,19 +247,35 @@ int main(int argc, char *argv[])
 {
 	Elf64_Ehdr elfHdr;
 	FILE *ElfFile = NULL;
+	int R_file;
 
 	if (argc != 2)
 	{
 		perror("Usage: elf_header elf_filename\n");
 		exit(98);
 	}
-	ElfFile = fopen(argv[1], "r");
-	if (ElfFile == NULL)
+	ElfFile = open(argv[1], O_RDONLY);
+	if (Elffile == -1)
 	{
-		printf("Error: can't read file\n");
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
-	fread(&elfHdr, 1, sizeof(elfHdr), ElfFile);
+	elfHdr = malloc(sizeof(Elf64_Ehdr));
+	if (elfHdr == NULL)
+	{
+		_close(Elffile);
+		free(elfHdr);
+		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
+		exit(98);
+	}
+	R_file = read(Elffile, elfHdr, sizeof(Elf64_Ehdr));
+	if (Rfile == -1)
+	{
+		free(elfHdr);
+		_close_(Elffile);
+		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
+		exit(98);
+	}
 
 	if_elf(elfHdr.e_ident); /* check if elf */
 	printf("ELF Header:\n");
@@ -229,19 +286,8 @@ int main(int argc, char *argv[])
 	print_osabi(elfHdr.e_ident);
 	print_abi(elfHdr.e_ident);
 	print_type(elfHdr.e_type, elfHdr.e_ident);
-	printf("  Entry point address:               ");
-	if (elfHdr.e_ident[EI_DATA] == ELFDATA2MSB)
-	{
-		elfHdr.e_entry = ((elfHdr.e_entry << 8) & 0xFF00FF00) |
-			  ((elfHdr.e_entry >> 8) & 0xFF00FF);
-		elfHdr.e_entry = (elfHdr.e_entry << 16) | (elfHdr.e_entry >> 16);
-	}
-	if (elfHdr.e_ident[EI_CLASS] == ELFCLASS32)
-		printf("%#x\n",
-		       (unsigned int)elfHdr.e_entry);
-	else
-		printf("%#lx\n", elfHdr.e_entry);
+	print_entry(elfHdr.e_entry, elfHdr.e_ident);
 
-	fclose(ElfFile);
+	_close(ElfFile);
 	return (0);
 }
