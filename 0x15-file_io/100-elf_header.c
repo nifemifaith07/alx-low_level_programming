@@ -259,14 +259,14 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}
-	elfHdr = malloc(sizeof(Elf64_Ehdr));
+/*elfHdr = malloc(sizeof(Elf64_Ehdr));
 	if (elfHdr == NULL)
 	{
 		_close(Elffile);
 		free(elfHdr);
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
-	}
+	}*/
 	R_file = read(Elffile, elfHdr, sizeof(Elf64_Ehdr));
 	if (R_file == -1)
 	{
