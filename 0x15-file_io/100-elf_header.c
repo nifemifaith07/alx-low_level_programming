@@ -245,9 +245,8 @@ void _close(int Elffile)
 
 int main(int argc, char *argv[])
 {
-	Elf64_Ehdr elfHdr;
-	FILE *ElfFile = NULL;
-	int R_file;
+	Elf64_Ehdr *elfHdr;
+	int R_file, ElfFile;
 
 	if (argc != 2)
 	{
@@ -269,7 +268,7 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 	R_file = read(Elffile, elfHdr, sizeof(Elf64_Ehdr));
-	if (Rfile == -1)
+	if (R_file == -1)
 	{
 		free(elfHdr);
 		_close_(Elffile);
