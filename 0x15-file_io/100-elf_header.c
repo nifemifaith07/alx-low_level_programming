@@ -26,6 +26,9 @@ void print_magic(unsigned char *e_ident)
 {
 	int i;
 
+	if_elf(elfHdr->e_ident); /* check if elf */
+	printf("ELF Header:\n");
+
 	printf("  Magic:  ");
 	for (i = 0; i < EI_NIDENT; i++)
 		printf(" %.2x", e_ident[i]);
@@ -275,9 +278,8 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
 		exit(98);
 	}
-
-	if_elf(elfHdr->e_ident); /* check if elf */
-	printf("ELF Header:\n");
+	/*if_elf(elfHdr->e_ident); /* check if elf */
+	/*printf("ELF Header:\n");*/
 	print_magic(elfHdr->e_ident);
 	print_class(elfHdr->e_ident);
 	print_data(elfHdr->e_ident);
@@ -286,7 +288,6 @@ int main(int argc, char *argv[])
 	print_abi(elfHdr->e_ident);
 	print_type(elfHdr->e_type, elfHdr->e_ident);
 	print_entry(elfHdr->e_entry, elfHdr->e_ident);
-
 	_close(ElfFile);
 	return (0);
 }
