@@ -254,7 +254,7 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 	ElfFile = open(argv[1], O_RDONLY);
-	if (ElfaFile == -1)
+	if (ElfFile == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
