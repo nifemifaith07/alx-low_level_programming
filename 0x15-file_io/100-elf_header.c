@@ -17,7 +17,7 @@ void if_elf(unsigned char *e_ident)
 	}
 } 
 /**
- * PRINT MAGIC - PRINTS NUMBER AND E_IDENT BYTES
+ * print_magic - PRINTS NUMBER AND E_IDENT BYTES
  * @e_ident: array that specify how to read file
  * Return: nothing
  */
@@ -33,7 +33,7 @@ void print_magic(unsigned char *e_ident)
 }
 
 /**
- * PRINT CLASS - FILE ARCHITECTURE 
+ * print_class - FILE ARCHITECTURE 
  * @e_ident: array
  * Return: nothing
  */
@@ -55,46 +55,20 @@ void print_class(unsigned char *e_ident)
 			break;
 		default:
 			printf("<unknown: %x>\n",
-			       elfHdr.e_ident[EI_CLASS]);
+			       e_ident[EI_CLASS]);
 	}
 }
+
 /**
- * main - entry point
- * @argc: argument count
- * @argv: argument vector
- * Return: 0(success)
- */
+* print_data - prints data
+* @e_ident: array
+* Return: nothing
+*/
 
-int main(int argc, char *argv[])
+void print_data(unsigned char *e_ident)
 {
-	int i;
-	Elf64_Ehdr elfHdr;
-	FILE* ElfFile = NULL;
-
-	if(argc != 2)
-	{
-		perror("Usage: elf_header elf_filename\n");
-		exit(98);
-	}   
-
-	ElfFile = fopen(argv[1], "r");
-	if(ElfFile == NULL)
-	{
-		printf("Error: can't read file\n");
-		exit(98);
-	}
-
-	fread(&elfHdr, 1, sizeof(elfHdr), ElfFile);
-
-	if_elf(elfHdr.e_ident); /* check if elf */
-	printf("ELF Header:\n");
-	print_magic(elfHdr.e_ident);
-	print_class(elfHdr.e_ident)
-	
-	
-	/* PRINT DATA ENCODING*/
 	printf("  Data:                              ");
-	switch (elfHdr.e_ident[EI_DATA])
+	switch (e_ident[EI_DATA])
 	{
 		case ELFDATANONE:
 			printf("none\n");
@@ -107,21 +81,20 @@ int main(int argc, char *argv[])
 			break;
 		default:
 			printf("<unknown: %x>\n",
-			       elfHdr.e_ident[EI_DATA]);
+			       e_ident[EI_DATA]);
 	}
+}
 
-	/* PRINT VERSION OF THE ELF SPECIFICATION */
-	printf("  Version:                           ");
-	if (elfHdr.e_ident[EI_VERSION] == EV_CURRENT)
-		printf("%d (current)\n",
-		       elfHdr.e_ident[EI_VERSION]);
-	else
-		printf("%i (invalid)\n",
-		       elfHdr.e_ident[EI_VERSION]);
+/**
+ * print_osabi - prints
+ * @e_ident: array
+ * Return: nothing
+ */
 
-	/* PRINT OS/ABI TO WHICH THE OBJECT IS DIRECTED */
+void print_osabi(unsigned chat e_ident)
+{
 	printf("  OS/ABI:                            ");
-	switch (elfHdr.e_ident[EI_OSABI])
+	switch (e_ident[EI_OSABI])
 	{
 		case ELFOSABI_SYSV:
 			printf("UNIX - System V\n");
@@ -158,14 +131,44 @@ int main(int argc, char *argv[])
 			break;
 		default:
 			printf("<unknown: %x>\n",
-			       elfHdr.e_ident[EI_OSABI]);
+			       e_ident[EI_OSABI]);
 	}
- 
-	/* PRINT ABI VERSION TO WHICH THE OBJECT IS TARGETED */
-	printf("  ABI Version:                       %d\n",
-	       elfHdr.e_ident[EI_ABIVERSION]);
+}
 
-	if (elfHdr.e_ident[EI_DATA] == ELFDATA2MSB)
+/**
+ * print_version - prints
+ * @e_indent: array
+ * Return: nothing
+ */
+
+void print_version(unsigned char *e_ident)
+{
+	printf("  Version:                           ");
+	if (e_ident[EI_VERSION] == EV_CURRENT)
+		printf("%d (current)\n",
+		       e_ident[EI_VERSION]);
+	else
+		printf("%i (invalid)\n",
+		       e_ident[EI_VERSION]);
+}
+/**
+ * print_abi - prints
+ * @e_ident: array
+ * Return: nothing
+ */
+void print_abi(unsigned char *e_ident)
+{
+	printf("  ABI Version:                       %d\n",
+	       e_ident[EI_ABIVERSION]);
+}
+/**
+ * print_type - prints
+ * @e_ident: array
+ * Return: nothing
+ */
+void print_type(unsigned int e_type, unsigned char *e_iden)
+{
+	if (e_ident[EI_DATA] == ELFDATA2MSB)
 		elfHdr.e_type >>= 8;
 
 	printf("  Type:                              ");
@@ -187,9 +190,44 @@ int main(int argc, char *argv[])
 			printf("CORE (Core file)\n");
 			break;
 		default:
-			printf("<unknown: %x\n", elfHdr.e_type);
+			printf("<unknown: %x\n", e_type);
 	}
+}
 
+/**
+ * main - entry point
+ * @argc: argument count
+ * @argv: argument vector
+ * Return: 0(success)
+ */
+
+int main(int argc, char *argv[])
+{
+	Elf64_Ehdr elfHdr;
+	FILE* ElfFile = NULL;
+
+	if(argc != 2)
+	{
+		perror("Usage: elf_header elf_filename\n");
+		exit(98);
+	}   
+	ElfFile = fopen(argv[1], "r");
+	if(ElfFile == NULL)
+	{
+		printf("Error: can't read file\n");
+		exit(98);
+	}
+	fread(&elfHdr, 1, sizeof(elfHdr), ElfFile);
+
+	if_elf(elfHdr.e_ident); /* check if elf */
+	printf("ELF Header:\n");
+	print_magic(elfHdr.e_ident);
+	print_class(elfHdr.e_ident);
+	print_data(elfHdr.e_ident);
+	print_version(elfHdr.e_ident);
+	print_osabi(elfHdr.e_ident);
+	print_abi(elfHdr.e_ident);
+	print_type(elfHdr.e_type, elfHdr.e_ident);
 	printf("  Entry point address:               ");
 	if (elfHdr.e_ident[EI_DATA] == ELFDATA2MSB)
 	{
@@ -204,6 +242,5 @@ int main(int argc, char *argv[])
 		printf("%#lx\n", elfHdr.e_entry);
 
 	fclose(ElfFile);
-
 	return 0;
 }
