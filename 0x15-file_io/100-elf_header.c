@@ -26,7 +26,7 @@ void print_magic(unsigned char *e_ident)
 {
 	int i;
 
-	if_elf(elfHdr->e_ident); /* check if elf */
+	if_elf(e_ident); /* check if elf */
 	printf("ELF Header:\n");
 
 	printf("  Magic:  ");
@@ -278,7 +278,7 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
 		exit(98);
 	}
-	/*if_elf(elfHdr->e_ident); /* check if elf */
+	/*if_elf(elfHdr->e_ident); check if elf */
 	/*printf("ELF Header:\n");*/
 	print_magic(elfHdr->e_ident);
 	print_class(elfHdr->e_ident);
