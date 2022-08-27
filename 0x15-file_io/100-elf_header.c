@@ -245,7 +245,7 @@ void _close(int Elffile)
 
 int main(int argc, char *argv[])
 {
-	Elf64_Ehdr elfHdr;
+	Elf64_Ehdr *elfHdr;
 	int R_file, ElfFile;
 
 	if (argc != 2)
@@ -254,7 +254,7 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 	ElfFile = open(argv[1], O_RDONLY);
-	if (Elffile == -1)
+	if (ElfaFile == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
@@ -267,25 +267,25 @@ int main(int argc, char *argv[])
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n", argv[1]);
 		exit(98);
 	}*/
-	R_file = read(Elffile, elfHdr, sizeof(Elf64_Ehdr));
+	R_file = read(ElfFile, elfHdr, sizeof(Elf64_Ehdr));
 	if (R_file == -1)
 	{
 		free(elfHdr);
-		_close_(Elffile);
+		_close(ElfFile);
 		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n", argv[1]);
 		exit(98);
 	}
 
-	if_elf(elfHdr.e_ident); /* check if elf */
+	if_elf(elfHdr->e_ident); /* check if elf */
 	printf("ELF Header:\n");
-	print_magic(elfHdr.e_ident);
-	print_class(elfHdr.e_ident);
-	print_data(elfHdr.e_ident);
-	print_version(elfHdr.e_ident);
-	print_osabi(elfHdr.e_ident);
-	print_abi(elfHdr.e_ident);
-	print_type(elfHdr.e_type, elfHdr.e_ident);
-	print_entry(elfHdr.e_entry, elfHdr.e_ident);
+	print_magic(elfHdr->e_ident);
+	print_class(elfHdr->e_ident);
+	print_data(elfHdr->e_ident);
+	print_version(elfHdr->e_ident);
+	print_osabi(elfHdr->e_ident);
+	print_abi(elfHdr->e_ident);
+	print_type(elfHdr->e_type, elfHdr->e_ident);
+	print_entry(elfHdr->e_entry, elfHdr->e_ident);
 
 	_close(ElfFile);
 	return (0);
