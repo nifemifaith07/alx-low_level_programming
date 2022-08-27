@@ -91,7 +91,7 @@ void print_data(unsigned char *e_ident)
  * Return: nothing
  */
 
-void print_osabi(unsigned chat e_ident)
+void print_osabi(unsigned char *e_ident)
 {
 	printf("  OS/ABI:                            ");
 	switch (e_ident[EI_OSABI])
@@ -166,13 +166,13 @@ void print_abi(unsigned char *e_ident)
  * @e_ident: array
  * Return: nothing
  */
-void print_type(unsigned int e_type, unsigned char *e_iden)
+void print_type(unsigned int e_type, unsigned char *e_ident)
 {
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
-		elfHdr.e_type >>= 8;
+		e_type >>= 8;
 
 	printf("  Type:                              ");
-	switch (elfHdr.e_type)
+	switch (e_type)
 	{
 		case ET_NONE:
 			printf("NONE (Unknown type)\n");
