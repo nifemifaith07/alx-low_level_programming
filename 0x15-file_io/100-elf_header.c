@@ -16,52 +16,32 @@ void if_elf(unsigned char *e_ident)
 		exit(98);
 	}
 } 
-
 /**
- * main - entry point
- * @argc: argument count
- * @argv: argument vector
- * Return: 0(success)
+ * PRINT MAGIC - PRINTS NUMBER AND E_IDENT BYTES
+ * @e_ident: array that specify how to read file
+ * Return: nothing
  */
 
-int main(int argc, char *argv[])
+void print_magic(unsigned char *e_ident)
 {
 	int i;
 
-	Elf64_Ehdr elfHdr;
-	FILE* ElfFile = NULL;
-
-	/* no of arguments must be two */
-	if(argc != 2)
-	{
-		perror("Usage: elf_header elf_filename\n");
-		exit(98);
-	}   
-
-	/* open filename with read only flag */
-	ElfFile = fopen(argv[1], "r");
-	if(ElfFile == NULL)
-	{
-		printf("Error: can't read file\n");
-		exit(98);
-	}
-
-	/* read file */
-	fread(&elfHdr, 1, sizeof(elfHdr), ElfFile);
-
-	if_elf(elfHdr.e_ident); /* check if elf */
-
-	printf("ELF Header:\n");
-
-	/* PRINT MAGIC NUMBER AND E_IDENT BYTES */
 	printf("  Magic:  ");
 	for (i = 0; i < EI_NIDENT; i++)
-		printf(" %.2x", elfHdr.e_ident[i]);
+		printf(" %.2x", e_ident[i]);
 	printf("\n");
+}
 
-	/* PRINT CLASS - FILE ARCHITECTURE */
+/**
+ * PRINT CLASS - FILE ARCHITECTURE 
+ * @e_ident: array
+ * Return: nothing
+ */
+
+void print_class(unsigned char *e_ident)
+{
 	printf("  Class:                             ");
-	switch (elfHdr.e_ident[EI_CLASS])
+	switch (e_ident[EI_CLASS])
 	{
 
 		case ELFCLASSNONE:
@@ -77,7 +57,41 @@ int main(int argc, char *argv[])
 			printf("<unknown: %x>\n",
 			       elfHdr.e_ident[EI_CLASS]);
 	}
+}
+/**
+ * main - entry point
+ * @argc: argument count
+ * @argv: argument vector
+ * Return: 0(success)
+ */
 
+int main(int argc, char *argv[])
+{
+	int i;
+	Elf64_Ehdr elfHdr;
+	FILE* ElfFile = NULL;
+
+	if(argc != 2)
+	{
+		perror("Usage: elf_header elf_filename\n");
+		exit(98);
+	}   
+
+	ElfFile = fopen(argv[1], "r");
+	if(ElfFile == NULL)
+	{
+		printf("Error: can't read file\n");
+		exit(98);
+	}
+
+	fread(&elfHdr, 1, sizeof(elfHdr), ElfFile);
+
+	if_elf(elfHdr.e_ident); /* check if elf */
+	printf("ELF Header:\n");
+	print_magic(elfHdr.e_ident);
+	print_class(elfHdr.e_ident)
+	
+	
 	/* PRINT DATA ENCODING*/
 	printf("  Data:                              ");
 	switch (elfHdr.e_ident[EI_DATA])
