@@ -15,7 +15,7 @@ void if_elf(unsigned char *e_ident)
 		dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 		exit(98);
 	}
-} 
+}
 /**
  * print_magic - PRINTS NUMBER AND E_IDENT BYTES
  * @e_ident: array that specify how to read file
@@ -33,7 +33,7 @@ void print_magic(unsigned char *e_ident)
 }
 
 /**
- * print_class - FILE ARCHITECTURE 
+ * print_class - FILE ARCHITECTURE
  * @e_ident: array
  * Return: nothing
  */
@@ -204,15 +204,15 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 int main(int argc, char *argv[])
 {
 	Elf64_Ehdr elfHdr;
-	FILE* ElfFile = NULL;
+	FILE *ElfFile = NULL;
 
-	if(argc != 2)
+	if (argc != 2)
 	{
 		perror("Usage: elf_header elf_filename\n");
 		exit(98);
-	}   
+	}
 	ElfFile = fopen(argv[1], "r");
-	if(ElfFile == NULL)
+	if (ElfFile == NULL)
 	{
 		printf("Error: can't read file\n");
 		exit(98);
@@ -242,5 +242,5 @@ int main(int argc, char *argv[])
 		printf("%#lx\n", elfHdr.e_entry);
 
 	fclose(ElfFile);
-	return 0;
+	return (0);
 }
