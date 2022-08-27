@@ -245,7 +245,7 @@ void _close(int Elffile)
 
 int main(int argc, char *argv[])
 {
-	Elf64_Ehdr *elfHdr;
+	Elf64_Ehdr elfHdr;
 	int R_file, ElfFile;
 
 	if (argc != 2)
