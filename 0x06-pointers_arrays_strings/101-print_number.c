@@ -10,7 +10,7 @@ void print_number(int n)
 {
 	unsigned int i = n;
 
-	if (i < 0)
+	if (n < 0)
 	{
 		_putchar('-');
 		i = -i;
