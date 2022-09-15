@@ -6,9 +6,9 @@
  * @b: buffer.
  * @size: size of buffer.
  * The output should print 10 bytes per line
- *	Each line starts with position of 1st byte of line in hex(8 chars), starting with 0
- *	Each line shows hex content (2 chars) of buff, 2 bytes at a time separated by space
- *	Each line shows content of buff. If byte is a printable char print letter else .
+ *	line starts with position of 1st byte of line in hex(8chars)-start with 0
+ *	line show hex content(2chars) of buff, 2 bytes per time seperated by space
+ *	line shows content of buff. If byte is a printable char print letter else .
  *	Each line ends with a new line \n
  *	If size is 0 or less, the output should be a new line only \n
  * Return: no return.
