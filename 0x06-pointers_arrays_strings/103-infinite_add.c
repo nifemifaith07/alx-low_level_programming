@@ -53,7 +53,7 @@ char *infinite_add(char *n1, char *n2, char *r, int size_r)
 		/* move values backwards by 1 */
 		while (len-- >= 0)
 			r[len + 1] = r[len];
-		r[0] = d + '0';
+		r[0] = abs + '0';
 	}
 	return (r);
 }
