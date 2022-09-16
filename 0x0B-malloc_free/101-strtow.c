@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+ * word_len - Locates the delimiter index marking the end
+ * of the first word contained within a string.
+ * @str: The string to be searched.
+ *
+ * Return: length of word delimmited by space
+ */
 int word_len(char *str)
 {
 	int index = 0, len = 0;
@@ -9,13 +16,12 @@ int word_len(char *str)
 		len++;
 		index++;
 	}
-
 	return (len);
 }
 
 /**
- * count_word - helper function to count the number of words in a string
- * @s: string to evaluate
+ * count_word - count the number of words in a string
+ * @str: string to evaluate
  *
  * Return: number of words
  */
@@ -31,13 +37,13 @@ int count_word(char *str)
 		else
 		{
 			/* count words */
-			while(*str != ' ' && *str)
+			while (*str != ' ' && *str)
 			{
 				str++;
 			}
 			w++;
 		}
-	}	
+	}
 	return (w);
 }
 
@@ -46,7 +52,7 @@ int count_word(char *str)
 * Each element of array should contain a single word, null-terminated
 * @str: string parameter
 *
-* Return: pointer to array of strings(words), 
+* Return: pointer to array of strings(words)
 * NULL if str == NULL or str == "" or if your function fails
 */
 
