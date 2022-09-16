@@ -2,14 +2,14 @@
 
 # C is FUN 😊
 
->Learning C right now, been wanting to get on this. It's going to be FUN !!.
+>Learning C right now. It's going to be FUN !!.
 <p align="center">
   <img src="https://i.postimg.cc/rprHShJ1/C-compilation-process.gif" />
 </p>
 
 ## About
 
-- This repository consists of all the C programming projects done with [ALX Africa](https://www.alxafrica.com/) Full stack Software Engineering course in partnership with [Holberton School](https://www.holbertonschool.com/) by [th3\_gr00t](https://th3-gr00t.tk/).
+- This repository consists of all the C programming projects done with [ALX Africa](https://www.alxafrica.com/) Full stack Software Engineering course in partnership with [Holberton School](https://www.holbertonschool.com/) by [nifemifaith07](https://github.com/nifemifaith07).
 - All main.c files are prewritten by the school. We build functions that produce a specific output while also taking into consideration edge cases.
 
 ---
@@ -39,13 +39,13 @@
 - [0x0E](./0x0E-structures_typedef) : Structures, typedef.
 - [0x0F](./0x0F-function_pointers) : Function pointers.
 - [0x10](./0x10-variadic_functions) : Variadic functions.
-- [0x11](https://github.com/iAmG-r00t/printf) : Write our own printf project.
+- [0x11](https://github.com/agapxx/printf.git) : Write our own printf project.
 - [0x12](./0x12-singly_linked_lists) : Singly linked lists.
 - [0x13](./0x13-more_singly_linked_lists) : More singly linked lists.
 - [0x14](./0x14-bit_manipulation) : Bit manipulation.
 - [0x15](./0x15-file_io) : File I/O.
 - [0x1C](./0x1C-makefiles) : Makefiles.
-- [0x1D](https://github.com/iAmG-r00t/binary_trees) : Binary trees.
+- [0x1D](https://github.com/) : Binary trees.
 - [0x1E](./0x1E-search_algorithms) : Search Algorithms.
 
 ---
