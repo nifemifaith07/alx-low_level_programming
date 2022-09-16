@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * array_range - creates an array of integers, contains all the values from 
+ * array_range - creates an array of integers, contains all the values from
  *	min(included) to max (included),ordered from min to max
  * @min: lowest integer to start from
  * @max: highest value indicating endpoint
@@ -21,10 +21,9 @@ int *array_range(int min, int max)
 	ptr = malloc(sizeof(int) * l);
 	if (!ptr)
 		return (NULL);
-	for (index = 0; index < l; min++,index++)
-	{	
-		ptr[index] = min;		
+	for (index = 0; index < l; min++, index++)
+	{
+		ptr[index] = min;	
 	}
-
 	return (ptr);
 }
