@@ -11,7 +11,7 @@
 
 int *array_range(int min, int max)
 {
-	int index, l;
+	int index = 0, l;
 	int *ptr;
 
 	if (min > max)
@@ -27,7 +27,6 @@ int *array_range(int min, int max)
 		{	
 			ptr[index] = min;
 			min += 1;
-			index++;
 		}
 	}
 	ptr[index] = '\0';
