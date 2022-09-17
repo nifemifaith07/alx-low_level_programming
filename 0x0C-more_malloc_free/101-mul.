@@ -1,0 +1,44 @@
+#include "main.h"
+
+/**
+ * is_digit - check if arguments are digits
+ * @av: array of arguments
+ * Return: 0 if digits, 1 if not digits
+ */
+
+int is_digit(char *av[])
+{
+	int i, j;
+
+	for (i = 1; i < 3; i++)
+	{
+		for (j = 0; av[i][j]; j++)
+		{
+			if (av[i][j] < 0 || av[i][j] > 9)
+				return (1);
+		}
+	}
+
+	return (0);
+}
+
+/**
+ * main - entry point
+ * @argc: arguument count
+ * @argv: argument vector
+ *
+ * Return: 0 (success)
+ */
+
+int main(int argc, char *argv[])
+{
+int i, j, len, a, b;
+char *ptr
+
+
+
+
+
+
+
+}
