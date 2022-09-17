@@ -117,7 +117,11 @@ int main(int argc, char *argv[])
 			_putchar(er[x]);
 		exit(98);
 	}
-
+	if (argv[1] == '0' || argv[2] == '0')
+	{
+		_putchar('0');
+		_putchar('\n');
+	}
 	for (n1 = 0; argv[1][n1]; n1++)
 		;
 	for (n2 = 0; argv[2][n2]; n2++)
