@@ -53,7 +53,7 @@ char *mul(char c, char *str, int str_len, char *dest, int dest_len)
 
 	for (p = str_len, q = dest_len; p >= 0; p--, q--)
 	{
-		mul = (c - '0') * (str[j] - '0') + mulrem;
+		mul = (c - '0') * (str[p] - '0') + mulrem;
 		mulrem = mul / 10;
 		add = (dest[q] - '0') + (mul % 10) + addrem;
 		addrem = add / 10;
@@ -107,7 +107,7 @@ void _print(char *str, int l)
 
 int main(int argc, char *argv[])
 {
-	int n1, n2, len, x, b;
+	int n1, n2, len, x, b, y;
 	char *ptr, *temp;
 	char er[] = "Error\n";
 
@@ -123,26 +123,26 @@ int main(int argc, char *argv[])
 	for (n2 = 0; argv[2][n2]; n2++)
 		;
 	len = n1 + n2 + 1;
-	a = malloc(sizeof(char) * len);
-	if (a == NULL)
+	ptr = malloc(sizeof(char) * len);
+	if (ptr == NULL)
 	{
 		for (x = 0; er[x]; x++)
 			_putchar(er[x]);
 		exit(98);
 	}
 
-	_memset(a, len - 1);
+	_memset(ptr, len - 1);
 	for (y = n2 - 1, b = 0; y >= 0; y--, b++)
 	{
-		temp = mul(argv[2][y], argv[1], n1 - 1, a, (len - 2) - i);
+		temp = mul(argv[2][y], argv[1], n1 - 1, ptr, (len - 2) - b);
 		if (temp == NULL)
 		{
 			for (x = 0; er[x]; x++)
 				_putchar(er[x]);
-			free(a);
+			free(ptr);
 			exit(98);
 		}
 	}
-	_print(a, len - 1);
+	_print(ptr, len - 1);
 	return (0);
 }
