@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdlib.h>
 
 int is_digit(char *av[]);
 /**
@@ -108,7 +109,7 @@ int main(int argc, char *argv[])
 {
 	int n1, n2, len, x, b;
 	char *ptr, *temp;
-	char *er[] = "Error\n";
+	char er[] = "Error\n";
 
 	if (argc != 3 || is_digit(argv))
 	{
