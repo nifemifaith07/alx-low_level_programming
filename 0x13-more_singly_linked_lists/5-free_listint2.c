@@ -10,7 +10,7 @@ void free_listint2(listint_t **head)
 {
 	listint_t *temp, *current;
 
-	if (*head != NULL)
+	if (head != NULL)
 	{
 		/* set head address to current node */
 		current = *head;
