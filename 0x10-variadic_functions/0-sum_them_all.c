@@ -18,7 +18,7 @@ int sum_them_all(const unsigned int n, ...)
 
 	va_start(list, n); /* initialize argument lisy */
 
-	for (i = 0; i > n; i++)
+	for (i = 0; i < n; i++)
 		sum += va_arg(list, int); /* get next argument value */
 
 	va_end(list); /* clean_up */
