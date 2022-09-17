@@ -2,11 +2,11 @@
 
 /**
  * print_all - prints anything
- * @format - a list of types of arguments passed
+ * @format: a list of types of arguments passed
  *
  * Return: nothing
  */
- 
+
 void print_all(const char * const format, ...)
 {
 	va_list list;
