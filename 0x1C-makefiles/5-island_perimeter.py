@@ -6,7 +6,7 @@ Island perimeter using effective counting approach
     one for its shared side and one for the neighbour shared side
 """
 
-     def island_perimeter(grid):
+    def island_perimeter(grid):
         """
         returns the perimeter of the island described in grid
 
