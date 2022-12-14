@@ -1,9 +1,12 @@
 #!/usr/bin/python3
 """
-Island perimeter
+Island perimeter using effective counting approach
+    Each land cell contributes 4 to the perimeter of the island
+    but if it shares its sides with a neighbour subtract 2
+    one for its shared side and one for the neighbour shared side
 """
 
-def island_perimeter(grid):
+    def island_perimeter(grid):
     """
     returns the perimeter of the island described in grid
 
